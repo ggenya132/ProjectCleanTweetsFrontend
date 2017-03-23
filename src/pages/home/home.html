@@ -13,6 +13,7 @@
   </ion-searchbar>
 
   <button ion-button (click)="callService()">Call Service</button>
+  <ion-title *ngIf="score">{{score}}</ion-title>
   <ion-list *ngFor="let tweet of tweets">
     <ion-card>
       <ion-card-content>{{tweet.retweetCount}}</ion-card-content>

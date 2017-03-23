@@ -15,11 +15,11 @@ export class TweetService{
         return this.http.get(this.tweetUrl+"/realDonaldTrump");
     }
 
-    search(twitterHandle){
+    search(twitterHandle){//returns a json list of tweets
         return this.http.get(this.tweetUrl+"/"+twitterHandle);
     }
 
-    searchForScore(twitterHandle){
+    searchForScore(twitterHandle){//returns just an int
         return this.http.get(this.tweetUrl+"/"+twitterHandle+"/score");
     }
 }

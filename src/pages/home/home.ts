@@ -8,6 +8,7 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
   public twitterHandle:string;
+  public score:any = 0;
 
   public tweets:any = [{},{}];
 
@@ -20,17 +21,23 @@ export class HomePage {
     });
   }
 
+  callServiceForScore(){
+    this.tweetService.searchForScore(this.twitterHandle).subscribe(response => {
+      this.score = response.text;
+    });
+  }
+
+
   userPressedCancel(){
     this.twitterHandle = '';
   }
 
-  	keyHasBeenPressed(e){
+  keyHasBeenPressed(e){
       console.log(this.twitterHandle)
 		if(e.key === 'Enter'){
-			this.tweetService.search(this.twitterHandle).subscribe(response => {
-        this.tweets = response.json();
+			this.tweetService.searchForScore(this.twitterHandle).subscribe(response => {
+        this.score = response.json();
       });
-        console.log(this.tweets);
 		}
 	}
 
