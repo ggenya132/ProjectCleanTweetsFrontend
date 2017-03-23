@@ -1,18 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, URLSearchParams } from '@angular/http';
 
 @Injectable()
 export class TweetService{
 
-    public tweetUrl:string = "http://localhost:8080/svc/v1/tweets/";
+    params: URLSearchParams
+    public tweetUrl:string = "http://localhost:8080/svc/v1/tweets";
 
     constructor(public http:Http){
         this.http = http;
     }
 
     getTweets(){
-        console.log("in the service")
-        return this.http.get(this.tweetUrl);
+        return this.http.get(this.tweetUrl+"/realDonaldTrump");
     }
 
+    search(twitterHandle){
+        return this.http.get(this.tweetUrl+"/"+twitterHandle);
+    }
 }

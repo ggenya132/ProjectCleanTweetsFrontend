@@ -1,13 +1,18 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Project Clean Tweets
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <button (click)="callService()">Call Service</button>
+<ion-content>
+	<ion-searchbar [(ngModel)]="twitterHandle"
+		(cancel)="userPressedCancel()"
+		(keyup)="keyHasBeenPressed($event)">
+  </ion-searchbar>
+
+  <button ion-button (click)="callService()">Call Service</button>
   <ion-list *ngFor="let tweet of tweets">
     <ion-card>
       <ion-card-content>{{tweet.retweetCount}}</ion-card-content>
