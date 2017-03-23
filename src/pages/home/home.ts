@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { TweetService } from '../..//services/tweet-service';
+import { TweetService } from '../../services/tweet-service';
 import { NavController } from 'ionic-angular';
+import { BattlePage } from '../battle/battle'; 
 
 @Component({
   selector: 'page-home',
@@ -40,5 +41,9 @@ export class HomePage {
       });
 		}
 	}
+
+  goToBattle(){
+    this.navCtrl.push(BattlePage)
+  }
 
 }

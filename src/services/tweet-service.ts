@@ -22,4 +22,9 @@ export class TweetService{
     searchForScore(twitterHandle){//returns just an int
         return this.http.get(this.tweetUrl+"/"+twitterHandle+"/score");
     }
+
+    getBattleResult(awayTwitterHandle, homeTwitterHandle){
+        return this.http.get(this.tweetUrl+"/"+awayTwitterHandle+"/"+homeTwitterHandle+"/100/score");
+    }
+
 }

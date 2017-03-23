@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Clean Tweets Battle
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-searchbar [(ngModel)]="awayTwitterHandle"
+		(cancel)="userPressedCancel()"
+		(keyup)="keyHasBeenPressed($event)">
+  </ion-searchbar>
+
+  <ion-searchbar [(ngModel)]="homeTwitterHandle"
+		(cancel)="userPressedCancel()"
+		(keyup)="keyHasBeenPressed($event)">
+  </ion-searchbar>
+
+  <button ion-button (click)="callKarmaService()">Karmafy</button>
+  <ion-title>Winner {{results[0]}}</ion-title>
+  <ion-row>
+    <ion-col>{{results[1]}}</ion-col>
+    <ion-col>{{results[2]}}</ion-col>
+  </ion-row>
+</ion-content>
