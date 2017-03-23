@@ -18,4 +18,8 @@ export class TweetService{
     search(twitterHandle){
         return this.http.get(this.tweetUrl+"/"+twitterHandle);
     }
+
+    searchForScore(twitterHandle){
+        return this.http.get(this.tweetUrl+"/"+twitterHandle+"/score");
+    }
 }
