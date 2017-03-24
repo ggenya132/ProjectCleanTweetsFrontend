@@ -16,11 +16,11 @@
 		(cancel)="userPressedCancel()"
 		(keyup)="keyHasBeenPressed($event)">
   </ion-searchbar>
-
-  <button ion-button (click)="callKarmaService()">Karmafy</button>
+  <button ion-button round (click)="callKarmaService()">Karmafication</button>
   <ion-title>Winner {{results[0]}}</ion-title>
   <ion-row>
     <ion-col>{{results[1]}}</ion-col>
     <ion-col>{{results[2]}}</ion-col>
   </ion-row>
+  <div class="d3-chart" #chart></div>
 </ion-content>
