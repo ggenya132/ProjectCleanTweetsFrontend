@@ -15,7 +15,7 @@ export class BattlePage implements OnInit, OnChanges {
   @ViewChild('chart') private chartContainer: ElementRef;
   @Input() private data:any = [[1,100],[2,0],[3,42],[4,50],[5,142],[6,50],[7,0],[8,100]];
   private margin: any = { top: 20, bottom: 20, left: 20, right: 20};
-  private chart: any;
+  private chart: any = null;
   private width: number;
   private height: number;
   private xScale: any;
@@ -24,10 +24,13 @@ export class BattlePage implements OnInit, OnChanges {
   private xAxis: any;
   private yAxis: any;
   public twitterHandle:string;
-  public awayTwitterHandle:string;
-  public homeTwitterHandle:string;
+  public awayTwitterHandle:string = "";
+  public homeTwitterHandle:string = "";
+  public showWinnerTitle:boolean = false;
   public results:any = [{},{},{}];
   public tweets:any = [{},{}];
+  // public results:any;
+  // public tweets:any;
 
 
   constructor(public navCtrl: NavController, public tweetService:TweetService) {
@@ -39,27 +42,30 @@ export class BattlePage implements OnInit, OnChanges {
     });
   }
 
-  userPressedCancel(){
-    this.twitterHandle = '';
-  }
-
-  keyHasBeenPressed(e){
-      console.log(this.awayTwitterHandle)
-		if(e.key === 'Enter'){
-        this.callKarmaService();
-      };
-		}
+  // keyHasBeenPressed(e){
+  //     console.log(this.awayTwitterHandle)
+	// 	if(e.key === 'Enter'){
+  //       // this.callKarmaService();
+  //
+  //
+  //     };
+	// 	}
 
   callKarmaService(){
     this.tweetService.getBattleResult(this.awayTwitterHandle, this.homeTwitterHandle).subscribe(response => {
       this.results = response.json();
+      this.showWinnerTitle = true;
+      if(this.chart == null) {
+      this.createChart();
+      this.updateChart();
+    } else this.updateChart();
     });
   }
   ngOnInit() {
-    this.createChart();
-    if (this.data) {
-      this.updateChart();
-    }
+    // this.createChart();
+    // if (this.data) {
+    //   this.updateChart();
+    // }
   }
 
   ngOnChanges() {
@@ -136,7 +142,7 @@ export class BattlePage implements OnInit, OnChanges {
       .attr('height', 0)
       .style('fill', (d, i) => this.colors(i))
       .transition()
-      .delay((d, i) => i * 10)
+      .delay((d, i) => i * 300)
       .attr('y', d => this.yScale(d[1]))
       .attr('height', d => this.height - this.yScale(d[1]));
   }

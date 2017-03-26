@@ -1,9 +1,9 @@
 page-battle {
 
-}
 .d3-chart {
-  width: 100%;
-  height: 400px;
+  margin: 10px auto 10px auto;
+  height: 25%;
+  bottom: 0px;
 }
 
 .d3-chart .axis path,
@@ -13,4 +13,29 @@ page-battle {
 
 .d3-chart .axis text {
   fill: #999;
+}
+ion-card {
+  height: 20%;
+  position: relative;
+}
+.penguin {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+.birdy1 {
+  transform: rotateY(180deg);
+  position: absolute;
+  bottom:10px;
+  right: 10px;
+  width: 30%;
+}
+.birdy2 {
+  position: absolute;
+  bottom: 10px;
+  margin-right: 10px;
+  width: 30%;
+}
+
 }

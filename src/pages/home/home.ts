@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TweetService } from '../../services/tweet-service';
 import { NavController } from 'ionic-angular';
-import { BattlePage } from '../battle/battle'; 
+import { BattlePage } from '../battle/battle';
 
 @Component({
   selector: 'page-home',

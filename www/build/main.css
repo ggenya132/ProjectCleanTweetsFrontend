@@ -24498,16 +24498,45 @@ ion-navbar.toolbar {
   }
 }
 
-.d3-chart {
-  width: 100%;
-  height: 400px;
+page-battle .d3-chart {
+  margin: 10px auto 10px auto;
+  height: 25%;
+  bottom: 0px;
 }
 
-.d3-chart .axis path,
-.d3-chart .axis line {
+page-battle .d3-chart .axis path,
+page-battle .d3-chart .axis line {
   stroke: #999;
 }
 
-.d3-chart .axis text {
+page-battle .d3-chart .axis text {
   fill: #999;
+}
+
+page-battle ion-card {
+  height: 20%;
+  position: relative;
+}
+
+page-battle .penguin {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+
+page-battle .birdy1 {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 30%;
+}
+
+page-battle .birdy2 {
+  position: absolute;
+  bottom: 10px;
+  margin-right: 10px;
+  width: 30%;
 }

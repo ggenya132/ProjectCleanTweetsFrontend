@@ -7,20 +7,25 @@
 </ion-header>
 
 <ion-content>
-	<ion-searchbar [(ngModel)]="awayTwitterHandle"
-		(cancel)="userPressedCancel()"
-		(keyup)="keyHasBeenPressed($event)">
+  <ion-card>
+    <img class="penguin" src="../assets/icon/judgepenguin.png"/>
+    <img class="birdy1" src="../assets/icon/search.jpg"/>
+    <img class="birdy2" src="../assets/icon/search.jpg"/>
+    <ion-card-content>
+    </ion-card-content>
+  </ion-card>
+
+	<ion-searchbar [(ngModel)]="awayTwitterHandle">
   </ion-searchbar>
 
-  <ion-searchbar [(ngModel)]="homeTwitterHandle"
-		(cancel)="userPressedCancel()"
-		(keyup)="keyHasBeenPressed($event)">
+  <ion-searchbar [(ngModel)]="homeTwitterHandle">
   </ion-searchbar>
-  <button ion-button round (click)="callKarmaService()">Karmafication</button>
-  <ion-title>Winner {{results[0]}}</ion-title>
+  <button ion-button full (click)="callKarmaService()">Check Twitter Karma</button>
+  <!-- <ion-title *ngIf="chart">{{results[0]}}</ion-title> -->
+  <ion-title *ngIf="showWinnerTitle">Winner {{results[0]}}</ion-title>
   <ion-row>
-    <ion-col>{{results[1]}}</ion-col>
-    <ion-col>{{results[2]}}</ion-col>
+    <ion-col *ngIf="showWinnerTitle">{{results[1]}}</ion-col>
+    <ion-col *ngIf="showWinnerTitle">{{results[2]}}</ion-col>
   </ion-row>
   <div class="d3-chart" #chart></div>
 </ion-content>
