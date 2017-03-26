@@ -13,7 +13,10 @@ import * as d3 from 'd3';
 
 export class BattlePage implements OnInit, OnChanges {
   @ViewChild('chart') private chartContainer: ElementRef;
-  @Input() private data:any = [[1,100],[2,0],[3,42],[4,50],[5,142],[6,50],[7,0],[8,100]];
+  // private data:any = [[0,0],[,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]];
+  // private newData:any = [[1,100],[2,0],[3,42],[4,50],[5,142],[6,50],[7,0],[8,100]];
+  private data:any = [[1,0],[2,0],[3,0],[4,0]];
+  // private newData:any = [[1,100],[2,0],[3,42],[4,50],[5,142],[6,50],[7,0],[8,100]];
   private margin: any = { top: 20, bottom: 20, left: 20, right: 20};
   private chart: any = null;
   private width: number;
@@ -27,7 +30,8 @@ export class BattlePage implements OnInit, OnChanges {
   public awayTwitterHandle:string = "";
   public homeTwitterHandle:string = "";
   public showWinnerTitle:boolean = false;
-  public results:any = [{},{},{}];
+  public results:any = [{},{},{},{}];
+  private newData:any = [[1,0],[2,3],[3,3],[4,4]];
   public tweets:any = [{},{}];
   // public results:any;
   // public tweets:any;
@@ -52,20 +56,21 @@ export class BattlePage implements OnInit, OnChanges {
 	// 	}
 
   callKarmaService(){
+    console.log(this.results);
     this.tweetService.getBattleResult(this.awayTwitterHandle, this.homeTwitterHandle).subscribe(response => {
       this.results = response.json();
+      console.log(this.results);
+      this.newData = [[1,0],[2,this.results[2]],[3,this.results[3]], [4,100]];
       this.showWinnerTitle = true;
       if(this.chart == null) {
       this.createChart();
       this.updateChart();
     } else this.updateChart();
+    console.log(this.results);
     });
   }
   ngOnInit() {
-    // this.createChart();
-    // if (this.data) {
-    //   this.updateChart();
-    // }
+    this.createChart();
   }
 
   ngOnChanges() {
@@ -111,14 +116,14 @@ export class BattlePage implements OnInit, OnChanges {
 
   updateChart() {
     // update scales & axis
-    this.xScale.domain(this.data.map(d => d[0]));
-    this.yScale.domain([0, d3.max(this.data, d => d[1])]);
-    this.colors.domain([0, this.data.length]);
+    this.xScale.domain(this.newData.map(d => d[0]));
+    this.yScale.domain([0, d3.max(this.newData, d => d[1])]);
+    this.colors.domain([0, this.newData.length]);
     this.xAxis.transition().call(d3.axisBottom(this.xScale));
     this.yAxis.transition().call(d3.axisLeft(this.yScale));
 
     let update = this.chart.selectAll('.bar')
-      .data(this.data);
+      .data(this.newData);
 
     // remove exiting bars
     update.exit().remove();

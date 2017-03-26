@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { TweetService } from '../../services/tweet-service';
 import { NavController } from 'ionic-angular';
 import { BattlePage } from '../battle/battle';
-
+//added ngOnInit to hack to second page for debugging purposes
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -45,5 +45,7 @@ export class HomePage {
   goToBattle(){
     this.navCtrl.push(BattlePage)
   }
-
+  ngOnInit(){
+    this.goToBattle();
+  }
 }

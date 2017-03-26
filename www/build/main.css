@@ -24498,6 +24498,31 @@ ion-navbar.toolbar {
   }
 }
 
+page-battle .karma {
+  height: 50px;
+}
+
+page-battle .winner {
+  border-top: 4px;
+  font-size: 15px;
+  color: black;
+  margin: auto;
+}
+
+page-battle .loser {
+  font-size: 15px;
+  color: red;
+}
+
+page-battle .outcome {
+  height: 30px;
+}
+
+page-battle .axislabel {
+  margin-left: 10px;
+  font-size: 8px;
+}
+
 page-battle .d3-chart {
   margin: 10px auto 10px auto;
   height: 25%;
@@ -24510,7 +24535,9 @@ page-battle .d3-chart .axis line {
 }
 
 page-battle .d3-chart .axis text {
+  position: relative;
   fill: #999;
+  bottom: 10px;
 }
 
 page-battle ion-card {

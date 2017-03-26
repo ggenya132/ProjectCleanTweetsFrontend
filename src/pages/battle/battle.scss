@@ -1,5 +1,26 @@
 page-battle {
 
+  .karma {
+    height:50px;
+  }
+  .winner {
+    border-top: 4px;
+    font-size:15px;
+    color: black;
+    margin: auto;
+  }
+  .loser {
+    font-size: 15px;
+    color: red;
+  }
+  .outcome {
+    height:30px;
+  }
+  .axislabel {
+    margin-left: 10px;
+    font-size: 8px;
+  }
+
 .d3-chart {
   margin: 10px auto 10px auto;
   height: 25%;
@@ -12,7 +33,9 @@ page-battle {
 }
 
 .d3-chart .axis text {
+  position: relative;
   fill: #999;
+  bottom:10px;
 }
 ion-card {
   height: 20%;

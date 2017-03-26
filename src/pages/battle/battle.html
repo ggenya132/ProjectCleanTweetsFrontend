@@ -11,8 +11,6 @@
     <img class="penguin" src="../assets/icon/judgepenguin.png"/>
     <img class="birdy1" src="../assets/icon/search.jpg"/>
     <img class="birdy2" src="../assets/icon/search.jpg"/>
-    <ion-card-content>
-    </ion-card-content>
   </ion-card>
 
 	<ion-searchbar [(ngModel)]="awayTwitterHandle">
@@ -22,10 +20,17 @@
   </ion-searchbar>
   <button ion-button full (click)="callKarmaService()">Check Twitter Karma</button>
   <!-- <ion-title *ngIf="chart">{{results[0]}}</ion-title> -->
-  <ion-title *ngIf="showWinnerTitle">Winner {{results[0]}}</ion-title>
-  <ion-row>
-    <ion-col *ngIf="showWinnerTitle">{{results[1]}}</ion-col>
-    <ion-col *ngIf="showWinnerTitle">{{results[2]}}</ion-col>
-  </ion-row>
+  <ion-card class="karma">
+  <p class="winner" *ngIf="showWinnerTitle">Winner {{results[0]}} with a score of {{results[2]}}</p>
+  <p class="loser" *ngIf="showWinnerTitle">Loser {{results[1]}} with a score of {{results[3]}}</p>
+</ion-card>
   <div class="d3-chart" #chart></div>
+  <ion-card>
+    <ion-row *ngIf="showWinnerTitle">
+    <ion-col class="axislabel">@dickBot500    </ion-col>
+    <ion-col class="axislabel">@{{results[0]}}</ion-col>
+    <ion-col class="axislabel">@{{results[1]}}</ion-col>
+    <ion-col class="axislabel">@happyBot</ion-col>
+  </ion-row>
+  </ion-card>
 </ion-content>
