@@ -24531,8 +24531,8 @@ page-battle .axislabel {
 
 page-battle .d3-chart {
   margin: 10px auto 10px auto;
-  height: 25%;
-  bottom: 0px;
+  margin-left: 5px;
+  height: 20%;
 }
 
 page-battle .d3-chart .axis path,
@@ -24543,7 +24543,6 @@ page-battle .d3-chart .axis line {
 page-battle .d3-chart .axis text {
   position: relative;
   fill: #999;
-  bottom: 10px;
 }
 
 page-battle ion-card {

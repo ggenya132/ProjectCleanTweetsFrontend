@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TweetService } from '../..//services/tweet-service';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import { OnInit, OnChanges, ViewChild, ElementRef} from '@angular/core';
 import * as d3 from 'd3';
 
@@ -33,11 +33,13 @@ export class BattlePage implements OnInit, OnChanges {
   public results:any = [{},{},{},{}];
   private newData:any = [[1,0],[2,3],[3,3],[4,4]];
   public tweets:any = [{},{}];
+  private radioOpen:boolean = false;
+  private radioResult:any = "";
   // public results:any;
   // public tweets:any;
 
 
-  constructor(public navCtrl: NavController, public tweetService:TweetService) {
+  constructor(public navCtrl: NavController, public tweetService:TweetService, public alertCtrl:AlertController) {
   }
 
   callService(){
@@ -46,34 +48,104 @@ export class BattlePage implements OnInit, OnChanges {
     });
   }
 
-  // keyHasBeenPressed(e){
-  //     console.log(this.awayTwitterHandle)
-	// 	if(e.key === 'Enter'){
-  //       // this.callKarmaService();
-  //
-  //
-  //     };
-	// 	}
+  showRadio() {
+  let alert = this.alertCtrl.create();
+  alert.setTitle('Choose Display Type');
+
+  alert.addInput({
+    type: 'radio',
+    label: 'Total',
+    value: 'total',
+    checked: true
+  });
+
+  alert.addInput({
+    type:'radio',
+    label:'Positive',
+    value: 'positive',
+    checked: false
+  });
+
+  alert.addInput({
+    type:'radio',
+    label:'Negative',
+    value: 'negative',
+    checked: false
+  })
+
+  alert.addButton('Cancel');
+  alert.addButton({
+    text: 'OK',
+    handler: data => {
+      this.radioOpen = false;
+      this.radioResult = data;
+    }
+
+  });
+  alert.present();
+
+}
+
+  graphTotal() {
+    this.newData = [[1,0],[2,this.results[2]],[3,this.results[5]], [4,100]];
+    this.showWinnerTitle = true;
+    if(this.chart == null) {
+    this.createChart();
+    this.updateChart();
+  } else this.newData = [[1,0],[2,this.results[2]],[3,this.results[5]], [4,100]];
+  this.updateChart();
+}
+
+// graphTotal() {
+//   this.newData = [[1,0],[2,this.results.get("tweet1Score")],[3,this.results.get("tweet2Score")], [4,100]];
+//   this.showWinnerTitle = true;
+//   if(this.chart == null) {
+//   this.createChart();
+//   this.updateChart();
+// } else this.newData = [[1,0],[2,this.results.get("tweet1Score")],[3,this.results.get("tweet2Score")], [4,100]];
+// this.updateChart();
+// }
+crazyGraph() {
+  this.newData = [[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10]];
+  this.createChart();
+  this.updateChart();
+}
+
+graphPositive() {
+  this.newData = [[1,0],[2,this.results[3]],[3,this.results[6]], [4,100]];
+  this.showWinnerTitle = true;
+  if(this.chart == null) {
+  this.createChart();
+  this.updateChart();
+} else this.newData = [[1,0],[2,this.results[3]],[3,this.results[6]], [4,100]];
+this.updateChart();
+}
+
+graphNegative() {
+  this.newData = [[1,100],[2,this.results[4]],[3,this.results[7]], [4,0]];
+  this.showWinnerTitle = true;
+  if(this.chart == null) {
+  this.createChart();
+  this.updateChart();
+} else this.newData = [[1,100],[2,this.results[4]],[3,this.results[7]], [4,0]];
+this.updateChart();
+}
 
   callKarmaService(){
     this.tweetService.getBattleResult(this.awayTwitterHandle, this.homeTwitterHandle).subscribe(response => {
       this.results = response.json();
-      console.log(this.results);
-      this.newData = [[1,0],[2,this.results[2]],[3,this.results[3]], [4,100]];
-      this.showWinnerTitle = true;
-      if(this.chart == null) {
-      this.createChart();
-      this.updateChart();
-    } else
-    this.newData = [[1,0],[2,0],[3,0], [4,0]];
-    this.updateChart();
-
-    this.newData = [[1,0],[2,this.results[2]],[3,this.results[3]], [4,100]];
-    setTimeout(this.updateChart(),5000);
+      if(this.radioResult == "total"){
+      this.graphTotal();
+    } else if(this.radioResult == "positive"){
+      this.graphPositive();
+    } else if(this.radioResult == "negative"){
+      this.graphNegative();
+    } else this.crazyGraph();
     });
   }
   ngOnInit() {
     this.createChart();
+    this.showRadio();
   }
 
   ngOnChanges() {

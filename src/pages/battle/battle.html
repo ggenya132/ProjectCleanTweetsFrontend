@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Clean Tweets Battle Mode
+      Battle Mode
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -23,7 +23,7 @@
   <ion-card class="karma">
   <p class="waitingForWinner" *ngIf="!showWinnerTitle"> *** WAITING FOR KARMA TALLEY *** </p>
   <p class="winner" *ngIf="showWinnerTitle">Winner {{results[0]}} with a score of {{results[2]}}</p>
-  <p class="loser" *ngIf="showWinnerTitle">Loser {{results[1]}} with a score of {{results[3]}}</p>
+  <p class="loser" *ngIf="showWinnerTitle">Loser {{results[1]}} with a score of {{results[5]}}</p>
 </ion-card>
   <div class="d3-chart" #chart></div>
   <ion-card class="bottomCard">
