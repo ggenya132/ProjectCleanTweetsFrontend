@@ -30,7 +30,8 @@ export class BattlePage implements OnInit, OnChanges {
   public awayTwitterHandle:string = "";
   public homeTwitterHandle:string = "";
   public showWinnerTitle:boolean = false;
-  public results:any = [{},{},{},{}];
+  public results:any = [null,null,null,null];
+  // public results:any;
   private newData:any = [[1,0],[2,3],[3,3],[4,4]];
   public tweets:any = [{},{}];
   private radioOpen:boolean = false;
@@ -97,19 +98,24 @@ export class BattlePage implements OnInit, OnChanges {
 }
 
 // graphTotal() {
-//   this.newData = [[1,0],[2,this.results.get("tweet1Score")],[3,this.results.get("tweet2Score")], [4,100]];
+//   // this.newData = [[1,0],[2,Number(this.results.tweetScore1)],[3,Number(this.results.tweetScore2)], [4,100]];
+//   this.newData = [[1,0],[2,2],[3,3], [4,100]];
 //   this.showWinnerTitle = true;
+//   console.log(this.results);
+//   console.log(this.newData);
 //   if(this.chart == null) {
 //   this.createChart();
 //   this.updateChart();
-// } else this.newData = [[1,0],[2,this.results.get("tweet1Score")],[3,this.results.get("tweet2Score")], [4,100]];
+// } else this.newData = [[1,0],[2,Number(this.results.tweetScore1)],[3,Number(this.results.tweetScore2)], [4,100]];
 // this.updateChart();
 // }
-crazyGraph() {
-  this.newData = [[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10]];
-  this.createChart();
-  this.updateChart();
-}
+// }
+// graphTotal() {
+//   console.log(this.results);
+//   this.newData = [[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10]];
+//   this.createChart();
+//   this.updateChart();
+// }
 
 graphPositive() {
   this.newData = [[1,0],[2,this.results[3]],[3,this.results[6]], [4,100]];
@@ -140,7 +146,7 @@ this.updateChart();
       this.graphPositive();
     } else if(this.radioResult == "negative"){
       this.graphNegative();
-    } else this.crazyGraph();
+    }
     });
   }
   ngOnInit() {
