@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TweetService } from '../..//services/tweet-service';
 import { NavController } from 'ionic-angular';
-import { OnInit, OnChanges, ViewChild, ElementRef, Input } from '@angular/core';
+import { OnInit, OnChanges, ViewChild, ElementRef} from '@angular/core';
 import * as d3 from 'd3';
 
 @Component({
@@ -56,7 +56,6 @@ export class BattlePage implements OnInit, OnChanges {
 	// 	}
 
   callKarmaService(){
-    console.log(this.results);
     this.tweetService.getBattleResult(this.awayTwitterHandle, this.homeTwitterHandle).subscribe(response => {
       this.results = response.json();
       console.log(this.results);
@@ -65,8 +64,12 @@ export class BattlePage implements OnInit, OnChanges {
       if(this.chart == null) {
       this.createChart();
       this.updateChart();
-    } else this.updateChart();
-    console.log(this.results);
+    } else
+    this.newData = [[1,0],[2,0],[3,0], [4,0]];
+    this.updateChart();
+
+    this.newData = [[1,0],[2,this.results[2]],[3,this.results[3]], [4,100]];
+    setTimeout(this.updateChart(),5000);
     });
   }
   ngOnInit() {

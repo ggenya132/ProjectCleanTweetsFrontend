@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Clean Tweets Battle
+      Clean Tweets Battle Mode
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -21,11 +21,12 @@
   <button ion-button full (click)="callKarmaService()">Check Twitter Karma</button>
   <!-- <ion-title *ngIf="chart">{{results[0]}}</ion-title> -->
   <ion-card class="karma">
+  <p class="waitingForWinner" *ngIf="!showWinnerTitle"> *** WAITING FOR KARMA TALLEY *** </p>
   <p class="winner" *ngIf="showWinnerTitle">Winner {{results[0]}} with a score of {{results[2]}}</p>
   <p class="loser" *ngIf="showWinnerTitle">Loser {{results[1]}} with a score of {{results[3]}}</p>
 </ion-card>
   <div class="d3-chart" #chart></div>
-  <ion-card>
+  <ion-card class="bottomCard">
     <ion-row *ngIf="showWinnerTitle">
     <ion-col class="axislabel">@dickBot500    </ion-col>
     <ion-col class="axislabel">@{{results[0]}}</ion-col>

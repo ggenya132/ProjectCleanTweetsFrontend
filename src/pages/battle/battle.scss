@@ -3,15 +3,21 @@ page-battle {
   .karma {
     height:50px;
   }
+
+  .waitingForWinner {
+    color: #aaaaaa;
+    text-align: center;
+  }
   .winner {
     border-top: 4px;
     font-size:15px;
     color: black;
-    margin: auto;
+    text-align: center;
   }
   .loser {
     font-size: 15px;
     color: red;
+    text-align: center;
   }
   .outcome {
     height:30px;
@@ -40,6 +46,9 @@ page-battle {
 ion-card {
   height: 20%;
   position: relative;
+}
+.bottomCard {
+  height: 30px;
 }
 .penguin {
   position: relative;

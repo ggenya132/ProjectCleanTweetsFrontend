@@ -24502,16 +24502,22 @@ page-battle .karma {
   height: 50px;
 }
 
+page-battle .waitingForWinner {
+  color: #aaaaaa;
+  text-align: center;
+}
+
 page-battle .winner {
   border-top: 4px;
   font-size: 15px;
   color: black;
-  margin: auto;
+  text-align: center;
 }
 
 page-battle .loser {
   font-size: 15px;
   color: red;
+  text-align: center;
 }
 
 page-battle .outcome {
@@ -24543,6 +24549,10 @@ page-battle .d3-chart .axis text {
 page-battle ion-card {
   height: 20%;
   position: relative;
+}
+
+page-battle .bottomCard {
+  height: 30px;
 }
 
 page-battle .penguin {
