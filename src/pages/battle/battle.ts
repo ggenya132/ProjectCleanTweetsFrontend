@@ -6,17 +6,13 @@ import * as d3 from 'd3';
 
 @Component({
   selector: 'page-battle',
-  templateUrl: 'battle.html',
-  // encapsulation: ViewEncapsulation.None
+  templateUrl: 'battle.html'
 })
 
 
 export class BattlePage implements OnInit, OnChanges {
   @ViewChild('chart') private chartContainer: ElementRef;
-  // private data:any = [[0,0],[,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]];
-  // private newData:any = [[1,100],[2,0],[3,42],[4,50],[5,142],[6,50],[7,0],[8,100]];
   private data:any = [[1,0],[2,0],[3,0],[4,0]];
-  // private newData:any = [[1,100],[2,0],[3,42],[4,50],[5,142],[6,50],[7,0],[8,100]];
   private margin: any = { top: 20, bottom: 20, left: 20, right: 20};
   private chart: any = null;
   private width: number;
@@ -31,14 +27,9 @@ export class BattlePage implements OnInit, OnChanges {
   public homeTwitterHandle:string = "";
   public showWinnerTitle:boolean = false;
   public results:any = [null,null,null,null];
-  // public results:any;
   private newData:any = [[1,0],[2,3],[3,3],[4,4]];
   public tweets:any = [{},{}];
-  private radioOpen:boolean = false;
-  private radioResult:any = "";
   private selectedGraph:string = "total";
-  // public results:any;
-  // public tweets:any;
 
 
   constructor(public navCtrl: NavController, public tweetService:TweetService, public alertCtrl:AlertController) {
@@ -60,46 +51,6 @@ export class BattlePage implements OnInit, OnChanges {
   }
 }
 
-
-
-//   showRadio() {
-//   let alert = this.alertCtrl.create();
-//   alert.setTitle('Choose Display Type');
-//
-//   alert.addInput({
-//     type: 'radio',
-//     label: 'Total',
-//     value: 'total',
-//     checked: true
-//   });
-//
-//   alert.addInput({
-//     type:'radio',
-//     label:'Positive',
-//     value: 'positive',
-//     checked: false
-//   });
-//
-//   alert.addInput({
-//     type:'radio',
-//     label:'Negative',
-//     value: 'negative',
-//     checked: false
-//   })
-//
-//   alert.addButton('Cancel');
-//   alert.addButton({
-//     text: 'OK',
-//     handler: data => {
-//       this.radioOpen = false;
-//       this.radioResult = data;
-//     }
-//
-//   });
-//   alert.present();
-//
-// }
-
   graphTotal() {
     this.newData = [[1,0],[2,this.results[2]],[3,this.results[5]], [4,100]];
     this.showWinnerTitle = true;
@@ -109,26 +60,6 @@ export class BattlePage implements OnInit, OnChanges {
   } else this.newData = [[1,0],[2,this.results[2]],[3,this.results[5]], [4,100]];
   this.updateChart();
 }
-
-// graphTotal() {
-//   // this.newData = [[1,0],[2,Number(this.results.tweetScore1)],[3,Number(this.results.tweetScore2)], [4,100]];
-//   this.newData = [[1,0],[2,2],[3,3], [4,100]];
-//   this.showWinnerTitle = true;
-//   console.log(this.results);
-//   console.log(this.newData);
-//   if(this.chart == null) {
-//   this.createChart();
-//   this.updateChart();
-// } else this.newData = [[1,0],[2,Number(this.results.tweetScore1)],[3,Number(this.results.tweetScore2)], [4,100]];
-// this.updateChart();
-// }
-// }
-// graphTotal() {
-//   console.log(this.results);
-//   this.newData = [[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10]];
-//   this.createChart();
-//   this.updateChart();
-// }
 
 graphPositive() {
   this.newData = [[1,0],[2,this.results[3]],[3,this.results[6]], [4,100]];
@@ -149,9 +80,6 @@ graphNegative() {
 } else this.newData = [[1,100],[2,this.results[4]],[3,this.results[7]], [4,0]];
 this.updateChart();
 }
-onChange(){
-  console.log("clicked");
-}
 
 callKarmaService(){
     this.tweetService.getBattleResult(this.awayTwitterHandle, this.homeTwitterHandle).subscribe(response => {
@@ -168,7 +96,6 @@ callKarmaService(){
   }
   ngOnInit() {
     this.createChart();
-    // this.showRadio();
   }
 
   ngOnChanges() {
@@ -176,6 +103,8 @@ callKarmaService(){
       this.updateChart();
     }
   }
+
+
 
   createChart() {
     let element = this.chartContainer.nativeElement;
@@ -250,3 +179,26 @@ callKarmaService(){
       .attr('height', d => this.height - this.yScale(d[1]));
   }
 }
+
+
+
+
+// graphTotal() {
+//   // this.newData = [[1,0],[2,Number(this.results.tweetScore1)],[3,Number(this.results.tweetScore2)], [4,100]];
+//   this.newData = [[1,0],[2,2],[3,3], [4,100]];
+//   this.showWinnerTitle = true;
+//   console.log(this.results);
+//   console.log(this.newData);
+//   if(this.chart == null) {
+//   this.createChart();
+//   this.updateChart();
+// } else this.newData = [[1,0],[2,Number(this.results.tweetScore1)],[3,Number(this.results.tweetScore2)], [4,100]];
+// this.updateChart();
+// }
+// }
+// graphTotal() {
+//   console.log(this.results);
+//   this.newData = [[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10]];
+//   this.createChart();
+//   this.updateChart();
+// }
