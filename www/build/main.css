@@ -24498,6 +24498,11 @@ ion-navbar.toolbar {
   }
 }
 
+page-battle body.modal-open {
+  position: fixed;
+  overflow: hidden;
+}
+
 page-battle .karma {
   height: 50px;
 }
@@ -24532,7 +24537,9 @@ page-battle .axislabel {
 page-battle .d3-chart {
   margin: 10px auto 10px auto;
   margin-left: 5px;
-  height: 20%;
+  margin-bottom: 0px;
+  margin-top: -30px;
+  height: 25%;
 }
 
 page-battle .d3-chart .axis path,
@@ -24546,7 +24553,7 @@ page-battle .d3-chart .axis text {
 }
 
 page-battle ion-card {
-  height: 20%;
+  height: 22%;
   position: relative;
 }
 

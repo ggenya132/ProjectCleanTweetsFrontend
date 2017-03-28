@@ -36,6 +36,7 @@ export class BattlePage implements OnInit, OnChanges {
   public tweets:any = [{},{}];
   private radioOpen:boolean = false;
   private radioResult:any = "";
+  private selectedGraph:string = "total";
   // public results:any;
   // public tweets:any;
 
@@ -49,43 +50,55 @@ export class BattlePage implements OnInit, OnChanges {
     });
   }
 
-  showRadio() {
-  let alert = this.alertCtrl.create();
-  alert.setTitle('Choose Display Type');
-
-  alert.addInput({
-    type: 'radio',
-    label: 'Total',
-    value: 'total',
-    checked: true
-  });
-
-  alert.addInput({
-    type:'radio',
-    label:'Positive',
-    value: 'positive',
-    checked: false
-  });
-
-  alert.addInput({
-    type:'radio',
-    label:'Negative',
-    value: 'negative',
-    checked: false
-  })
-
-  alert.addButton('Cancel');
-  alert.addButton({
-    text: 'OK',
-    handler: data => {
-      this.radioOpen = false;
-      this.radioResult = data;
-    }
-
-  });
-  alert.present();
-
+  onInput(){
+    if(this.selectedGraph == "total" && this.showWinnerTitle){
+    this.graphTotal();
+  } else if(this.selectedGraph == "positive" && this.showWinnerTitle){
+    this.graphPositive();
+  } else if(this.selectedGraph == "negative" && this.showWinnerTitle){
+    this.graphNegative();
+  }
 }
+
+
+
+//   showRadio() {
+//   let alert = this.alertCtrl.create();
+//   alert.setTitle('Choose Display Type');
+//
+//   alert.addInput({
+//     type: 'radio',
+//     label: 'Total',
+//     value: 'total',
+//     checked: true
+//   });
+//
+//   alert.addInput({
+//     type:'radio',
+//     label:'Positive',
+//     value: 'positive',
+//     checked: false
+//   });
+//
+//   alert.addInput({
+//     type:'radio',
+//     label:'Negative',
+//     value: 'negative',
+//     checked: false
+//   })
+//
+//   alert.addButton('Cancel');
+//   alert.addButton({
+//     text: 'OK',
+//     handler: data => {
+//       this.radioOpen = false;
+//       this.radioResult = data;
+//     }
+//
+//   });
+//   alert.present();
+//
+// }
 
   graphTotal() {
     this.newData = [[1,0],[2,this.results[2]],[3,this.results[5]], [4,100]];
@@ -136,22 +149,26 @@ graphNegative() {
 } else this.newData = [[1,100],[2,this.results[4]],[3,this.results[7]], [4,0]];
 this.updateChart();
 }
+onChange(){
+  console.log("clicked");
+}
 
-  callKarmaService(){
+callKarmaService(){
     this.tweetService.getBattleResult(this.awayTwitterHandle, this.homeTwitterHandle).subscribe(response => {
       this.results = response.json();
-      if(this.radioResult == "total"){
+
+      if(this.selectedGraph == "total"){
       this.graphTotal();
-    } else if(this.radioResult == "positive"){
+    } else if(this.selectedGraph == "positive"){
       this.graphPositive();
-    } else if(this.radioResult == "negative"){
+    } else if(this.selectedGraph == "negative"){
       this.graphNegative();
     }
     });
   }
   ngOnInit() {
     this.createChart();
-    this.showRadio();
+    // this.showRadio();
   }
 
   ngOnChanges() {

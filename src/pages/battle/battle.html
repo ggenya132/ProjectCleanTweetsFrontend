@@ -13,10 +13,10 @@
     <img class="birdy2" src="../assets/icon/search.jpg"/>
   </ion-card>
 
-	<ion-searchbar [(ngModel)]="awayTwitterHandle">
+	<ion-searchbar [(ngModel)]="awayTwitterHandle" placeholder="       *** enter twitter handle ***">
   </ion-searchbar>
 
-  <ion-searchbar [(ngModel)]="homeTwitterHandle">
+  <ion-searchbar [(ngModel)]="homeTwitterHandle" placeholder="       *** enter twitter handle ***">
   </ion-searchbar>
   <button ion-button full (click)="callKarmaService()">Check Twitter Karma</button>
   <!-- <ion-title *ngIf="chart">{{results[0]}}</ion-title> -->
@@ -25,13 +25,26 @@
   <p class="winner" *ngIf="showWinnerTitle">Winner {{results[0]}} with a score of {{results[2]}}</p>
   <p class="loser" *ngIf="showWinnerTitle">Loser {{results[1]}} with a score of {{results[5]}} </p>
 </ion-card>
+
+<ion-list>
+  <ion-item>
+    <ion-label class="graphDisplay">Graph Display</ion-label>
+    <ion-select [(ngModel)]="selectedGraph" (ionChange)="onInput()">
+      <ion-option value="total">Total</ion-option>
+      <ion-option value="positive">Positive</ion-option>
+      <ion-option value="negative">Negative</ion-option>
+    </ion-select>
+  </ion-item>
+</ion-list>
+
+
   <div class="d3-chart" #chart></div>
-  <ion-card class="bottomCard">
+  <p class="bottomCard">
     <ion-row *ngIf="showWinnerTitle">
-    <ion-col class="axislabel">@meanmachine </ion-col>
+    <ion-col class="axislabel">@meanMachine </ion-col>
     <ion-col class="axislabel">@{{results[0]}}</ion-col>
     <ion-col class="axislabel">@{{results[1]}}</ion-col>
     <ion-col class="axislabel">@happyBot</ion-col>
   </ion-row>
-  </ion-card>
+</p>
 </ion-content>
