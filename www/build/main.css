@@ -24497,3 +24497,89 @@ ion-navbar.toolbar {
     padding-top: calc(16px + 20px);
   }
 }
+
+page-battle body.modal-open {
+  position: fixed;
+  overflow: hidden;
+}
+
+page-battle .karma {
+  height: 50px;
+}
+
+page-battle .waitingForWinner {
+  color: #aaaaaa;
+  text-align: center;
+}
+
+page-battle .winner {
+  border-top: 4px;
+  font-size: 15px;
+  color: black;
+  text-align: center;
+}
+
+page-battle .loser {
+  font-size: 15px;
+  color: red;
+  text-align: center;
+}
+
+page-battle .outcome {
+  height: 30px;
+}
+
+page-battle .axislabel {
+  margin-left: 10px;
+  font-size: 8px;
+}
+
+page-battle .d3-chart {
+  margin: 10px auto 10px auto;
+  margin-left: 5px;
+  margin-bottom: 0px;
+  margin-top: -30px;
+  height: 25%;
+}
+
+page-battle .d3-chart .axis path,
+page-battle .d3-chart .axis line {
+  stroke: #999;
+}
+
+page-battle .d3-chart .axis text {
+  position: relative;
+  fill: #999;
+}
+
+page-battle ion-card {
+  height: 22%;
+  position: relative;
+}
+
+page-battle .bottomCard {
+  height: 30px;
+}
+
+page-battle .penguin {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+
+page-battle .birdy1 {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 30%;
+}
+
+page-battle .birdy2 {
+  position: absolute;
+  bottom: 10px;
+  margin-right: 10px;
+  width: 30%;
+}

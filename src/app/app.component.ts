@@ -10,7 +10,7 @@ import { BattlePage } from '../pages/battle/battle';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage = HomePage;
+  rootPage = BattlePage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {
