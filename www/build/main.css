@@ -24583,3 +24583,86 @@ page-battle .birdy2 {
   margin-right: 10px;
   width: 30%;
 }
+
+page-expert body.modal-open {
+  position: fixed;
+  overflow: hidden;
+}
+
+page-expert .karma {
+  height: 50px;
+}
+
+page-expert .graphDisplay {
+  size: 30%;
+}
+
+page-expert .waitingForWinner {
+  color: #aaaaaa;
+  text-align: center;
+}
+
+page-expert .winner {
+  border-top: 4px;
+  font-size: 15px;
+  color: black;
+  text-align: center;
+}
+
+page-expert .loser {
+  font-size: 15px;
+  color: red;
+  text-align: center;
+}
+
+page-expert .outcome {
+  height: 30px;
+}
+
+page-expert .axislabel {
+  margin-left: 10px;
+  font-size: 8px;
+}
+
+page-expert .d3-chart {
+  margin: 10px auto 10px auto;
+  margin-left: 5px;
+  margin-bottom: 0px;
+  margin-top: -30px;
+  height: 25%;
+}
+
+page-expert .d3-chart .axis path,
+page-expert .d3-chart .axis line {
+  stroke: #999;
+}
+
+page-expert .d3-chart .axis text {
+  position: relative;
+  fill: #999;
+}
+
+page-expert ion-card {
+  height: 22%;
+  position: relative;
+}
+
+page-expert .bottomCard {
+  height: 30px;
+}
+
+page-expert .penguin {
+  position: relative;
+  margin-left: 65px;
+  margin-right: auto;
+  width: 60%;
+}
+
+page-expert .birdy3 {
+  position: absolute;
+  z-index: 1;
+  margin-left: 45px;
+  bottom: 10px;
+  margin-right: 10px;
+  width: 30%;
+}
