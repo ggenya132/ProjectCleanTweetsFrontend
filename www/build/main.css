@@ -24498,8 +24498,12 @@ ion-navbar.toolbar {
   }
 }
 
+page-about .aboutTitle {
+  text-align: right;
+}
+
 page-battle .battleTitle {
-  text-align: center;
+  text-align: right;
 }
 
 page-battle body.modal-open {
@@ -24589,7 +24593,7 @@ page-battle .birdy2 {
 }
 
 page-expert .expertTitle {
-  text-align: center;
+  text-align: right;
 }
 
 page-expert body.modal-open {
@@ -24679,6 +24683,24 @@ page-home .homeTitle {
   text-align: center;
 }
 
-page-home .homeButtons {
-  margin: auto;
+page-home .select {
+  bottom: 0px;
+}
+
+page-home .about {
+  bottom: 30px;
+}
+
+page-home .battle {
+  bottom: 90px;
+}
+
+page-home .expert {
+  bottom: 150px;
+}
+
+page-home .penguin {
+  position: absolute;
+  height: 300px;
+  top: 50px;
 }

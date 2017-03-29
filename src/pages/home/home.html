@@ -1,13 +1,24 @@
 <ion-header>
   <ion-navbar>
     <ion-title class="homeTitle">
-      Welcome
+      Welcome To Project Clean Tweets
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="homeButtons">
-  <button ion-button (click)="goToExpert()">Expert</button>
-  <button ion-button (click)="goToBattle()">Battle</button>
-  <button ion-button (click)="goToAbout()">About</button>
+<ion-content class="select">
+  
+    <img class="penguin" src="assets/icon/directorPenguin.png"/>
+
+
+
+  <ion-footer class="expert">
+  <button ion-button full (click)="goToExpert()">Expert Mode</button>
+</ion-footer>
+  <ion-footer class="battle">
+  <button ion-button full (click)="goToBattle()">Battle Mode</button>
+</ion-footer>
+<ion-footer class="about">
+  <button ion-button full (click)="goToAbout()">About</button>
+</ion-footer>
 </ion-content>

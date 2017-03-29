@@ -27,7 +27,7 @@ export class ExpertPage implements OnInit, OnChanges {
   public results:any = [null,null,null,null];
   private newData:any = [[1,0],[2,3],[3,3],[4,4]];
   public tweets:any = [{},{}];
-  private selectedGraph:string = "lastTwentyFive";
+  private selectedGraph:string = "lastTwoHundred";
   private lastTwentyFive:boolean = false;
   private lastFifty:boolean = false;
   private lastOneHundred:boolean = false;

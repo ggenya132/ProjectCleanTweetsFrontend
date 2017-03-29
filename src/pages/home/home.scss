@@ -1,10 +1,29 @@
 page-home {
 
   .homeTitle {
+
     text-align: center;
   }
-
-  .homeButtons {
-    margin:auto;
+  .select {
+    bottom: 0px;
   }
+
+  .about {
+    bottom: 30px;
+  }
+
+  .battle {
+    bottom: 90px;
+  }
+  .expert {
+    bottom: 150px;
+  }
+
+  .penguin {
+    position: absolute;
+    height: 300px;
+    top: 50px;
+  }
+
+
 }
