@@ -12,7 +12,7 @@ import * as d3 from 'd3';
 
 export class BattlePage implements OnInit, OnChanges {
   @ViewChild('chart') private chartContainer: ElementRef;
-  private data:any = [[1,0],[2,0],[3,0],[4,0]];
+  private data:any = [["@realMeanMachine",0],["@handleOne",0],["@handleTwo",0],["@cleanTweets",0]];
   private margin: any = { top: 20, bottom: 20, left: 20, right: 20};
   private chart: any = null;
   private width: number;
@@ -29,7 +29,25 @@ export class BattlePage implements OnInit, OnChanges {
   public results:any = [null,null,null,null];
   private newData:any = [[1,0],[2,3],[3,3],[4,4]];
   public tweets:any = [{},{}];
-  private selectedGraph:string = "total";
+  private selectedGraph:string = "overall";
+
+
+
+
+
+
+  //   <p class="bottomCard">
+  // @
+  // @CleanTweets
+  //     <ion-row *ngIf="showWinnerTitle">
+  //     <ion-col class="axislabel">@meanMachine </ion-col>
+  //     <ion-col class="axislabel">@{{results[0]}}</ion-col>
+  //     <ion-col class="axislabel">@{{results[1]}}</ion-col>
+  //     <ion-col class="axislabel">@happyBot</ion-col>
+  //   </ion-row>
+  // </p>
+
+
 
 
   constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public tweetService:TweetService, public alertCtrl:AlertController) {
@@ -42,7 +60,7 @@ export class BattlePage implements OnInit, OnChanges {
   }
 
   onInput(){
-    if(this.selectedGraph == "total" && this.showWinnerTitle){
+    if(this.selectedGraph == "overall" && this.showWinnerTitle){
     this.graphTotal();
   } else if(this.selectedGraph == "positive" && this.showWinnerTitle){
     this.graphPositive();
@@ -52,32 +70,32 @@ export class BattlePage implements OnInit, OnChanges {
 }
 
   graphTotal() {
-    this.newData = [[1,0],[2,this.results[2]],[3,this.results[5]], [4,100]];
+    this.newData = [["@realMeanMachine",0],[this.results[0],this.results[2]],[this.results[1],this.results[5]], ["@cleanTweets",100]];
     this.showWinnerTitle = true;
     if(this.chart == null) {
     this.createChart();
     this.updateChart();
-  } else this.newData = [[1,0],[2,this.results[2]],[3,this.results[5]], [4,100]];
+  } else this.newData = [["@realMeanMachine",0],[this.results[0],this.results[2]],[this.results[1],this.results[5]], ["@cleanTweets",100]];
   this.updateChart();
 }
 
 graphPositive() {
-  this.newData = [[1,0],[2,this.results[3]],[3,this.results[6]], [4,100]];
+  this.newData = [["@realMeanMachine",0],[this.results[0],this.results[3]],[this.results[1],this.results[6]], ["@cleanTweets",100]];
   this.showWinnerTitle = true;
   if(this.chart == null) {
   this.createChart();
   this.updateChart();
-} else this.newData = [[1,0],[2,this.results[3]],[3,this.results[6]], [4,100]];
+} else this.newData = [["@realMeanMachine",0],[this.results[0],this.results[3]],[this.results[1],this.results[6]], ["@cleanTweets",100]];
 this.updateChart();
 }
 
 graphNegative() {
-  this.newData = [[1,100],[2,this.results[4]],[3,this.results[7]], [4,0]];
+  this.newData = [["@realMeanMachine",100],[this.results[0],this.results[4]],[this.results[1],this.results[7]], ["@cleanTweets",0]];
   this.showWinnerTitle = true;
   if(this.chart == null) {
   this.createChart();
   this.updateChart();
-} else this.newData = [[1,100],[2,this.results[4]],[3,this.results[7]], [4,0]];
+} else this.newData = [["@realMeanMachine",100],[this.results[0],this.results[4]],[this.results[1],this.results[7]], ["@cleanTweets",0]];
 this.updateChart();
 }
 
@@ -93,7 +111,7 @@ callKarmaService(){
 
       loader.dismiss();
 
-      if(this.selectedGraph == "total"){
+      if(this.selectedGraph == "overall"){
       this.graphTotal();
     } else if(this.selectedGraph == "positive"){
       this.graphPositive();

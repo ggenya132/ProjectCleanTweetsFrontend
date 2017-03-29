@@ -30,7 +30,7 @@
   <ion-item>
     <ion-label class="graphDisplay">Graph Display</ion-label>
     <ion-select [(ngModel)]="selectedGraph" (ionChange)="onInput()">
-      <ion-option value="total">Total</ion-option>
+      <ion-option value="overall">Overall</ion-option>
       <ion-option value="positive">Positive</ion-option>
       <ion-option value="negative">Negative</ion-option>
     </ion-select>
@@ -40,13 +40,4 @@
 
   <div class="d3-chart" #chart></div>
 
-
-  <p class="bottomCard">
-    <ion-row *ngIf="showWinnerTitle">
-    <ion-col class="axislabel">@meanMachine </ion-col>
-    <ion-col class="axislabel">@{{results[0]}}</ion-col>
-    <ion-col class="axislabel">@{{results[1]}}</ion-col>
-    <ion-col class="axislabel">@happyBot</ion-col>
-  </ion-row>
-</p>
 </ion-content>
