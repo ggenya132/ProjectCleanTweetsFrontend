@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TweetService } from '../..//services/tweet-service';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController, LoadingController } from 'ionic-angular';
 import { OnInit, OnChanges, ViewChild, ElementRef} from '@angular/core';
 import * as d3 from 'd3';
 
@@ -32,7 +32,7 @@ export class BattlePage implements OnInit, OnChanges {
   private selectedGraph:string = "total";
 
 
-  constructor(public navCtrl: NavController, public tweetService:TweetService, public alertCtrl:AlertController) {
+  constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public tweetService:TweetService, public alertCtrl:AlertController) {
   }
 
   callService(){
@@ -82,8 +82,16 @@ this.updateChart();
 }
 
 callKarmaService(){
-    this.tweetService.getBattleResult(this.awayTwitterHandle, this.homeTwitterHandle).subscribe(response => {
-      this.results = response.json();
+
+  let loader = this.loadingCtrl.create({
+      content: 'Getting latest entries...',
+    });
+
+    loader.present().then(() => {
+      this.tweetService.getBattleResult(this.awayTwitterHandle, this.homeTwitterHandle).subscribe(response => {
+        this.results = response.json();
+
+      loader.dismiss();
 
       if(this.selectedGraph == "total"){
       this.graphTotal();
@@ -93,7 +101,10 @@ callKarmaService(){
       this.graphNegative();
     }
     });
+  });
   }
+
+
   ngOnInit() {
     this.createChart();
   }

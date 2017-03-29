@@ -1,12 +1,12 @@
 page-expert {
 
+  .expertTitle {
+    text-align: center;
+  }
+
   body.modal-open {
     position: fixed;
     overflow: hidden;
-  }
-
-  .karma {
-    height:50px;
   }
 
   .graphDisplay {
@@ -38,7 +38,7 @@ page-expert {
 
 .d3-chart {
   margin: 10px auto 10px auto;
-  margin-left: 5px;
+  margin-left: 10px;
   margin-bottom: 0px;
   margin-top: -30px;
   height: 25%;
@@ -57,6 +57,11 @@ ion-card {
   height: 22%;
   position: relative;
 }
+
+.karma {
+  height: 11%;
+}
+
 .bottomCard {
   height: 30px;
 }

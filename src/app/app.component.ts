@@ -5,13 +5,14 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 import { HomePage } from '../pages/home/home';
 import { BattlePage } from '../pages/battle/battle';
 import { ExpertPage } from '../pages/expert/expert';
+import { AboutPage } from '../pages/about/about';
 
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage = ExpertPage;
+  rootPage = HomePage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {

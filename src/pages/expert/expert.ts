@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TweetService } from '../..//services/tweet-service';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController, LoadingController } from 'ionic-angular';
 import { OnInit, OnChanges, ViewChild, ElementRef} from '@angular/core';
 import * as d3 from 'd3';
 
@@ -12,7 +12,7 @@ import * as d3 from 'd3';
 
 export class ExpertPage implements OnInit, OnChanges {
   @ViewChild('chart') private chartContainer: ElementRef;
-  private data:any = [[1,0],[2,0],[3,0],[4,0]];
+  private data:any = [["Overall",0],["Positive",0],["Negative",0]];
   private margin: any = { top: 20, bottom: 20, left: 20, right: 20};
   private chart: any = null;
   private width: number;
@@ -27,13 +27,15 @@ export class ExpertPage implements OnInit, OnChanges {
   public results:any = [null,null,null,null];
   private newData:any = [[1,0],[2,3],[3,3],[4,4]];
   public tweets:any = [{},{}];
-  private selectedGraph:string = "total";
-  private totalSelected = false;
-  private positiveSelected = false;
-  private negativeSelected = false;
+  private selectedGraph:string = "lastTwentyFive";
+  private lastTwentyFive:boolean = false;
+  private lastFifty:boolean = false;
+  private lastOneHundred:boolean = false;
+  private lastTwoHundred:boolean = false;
+  private mostRecentTweet:string = "";
 
 
-  constructor(public navCtrl: NavController, public tweetService:TweetService, public alertCtrl:AlertController) {
+  constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public tweetService:TweetService, public alertCtrl:AlertController) {
   }
 
   callService(){
@@ -43,61 +45,123 @@ export class ExpertPage implements OnInit, OnChanges {
   }
 
   onInput(){
-    if(this.selectedGraph == "total" && this.showWinnerTitle){
-    this.graphTotal();
-  } else if(this.selectedGraph == "positive" && this.showWinnerTitle){
-    this.graphPositive();
-  } else if(this.selectedGraph == "negative" && this.showWinnerTitle){
-    this.graphNegative();
+    if(this.selectedGraph == "lastTwentyFive" && this.showWinnerTitle){
+    this.graphLastTwentyFive();
+  } else if(this.selectedGraph == "lastFifty" && this.showWinnerTitle){
+    this.graphLastFifty();
+  } else if(this.selectedGraph == "lastOneHundred" && this.showWinnerTitle){
+    this.graphLastOneHundred();
+  } else if(this.selectedGraph == "lastTwoHundred" && this.showWinnerTitle){
+    this.graphLastTwoHundred();
   }
 }
 
-  graphTotal() {
-    this.newData = [[1,0],[2,this.results[2]],[3,this.results[5]], [4,100]];
+  graphLastTwentyFive() {
+    this.newData = [["Overall",Number(this.results.tot25)],["Positive",Number(this.results.pos25)],
+    ["Negative",Number(this.results.neg25)]];
     this.showWinnerTitle = true;
     if(this.chart == null) {
     this.createChart();
     this.updateChart();
-  } else this.newData = [[1,0],[2,this.results[2]],[3,this.results[5]], [4,100]];
+  } else this.newData = [["Overall",Number(this.results.tot25)],["Positive",Number(this.results.pos25)],
+  ["Negative",Number(this.results.neg25)]];
   this.updateChart();
 }
 
-graphPositive() {
-  this.newData = [[1,0],[2,this.results[3]],[3,this.results[6]], [4,100]];
+graphLastFifty() {
+  this.newData = [["Overall",Number(this.results.tot50)],["Positive",Number(this.results.pos50)],
+  ["Negative",Number(this.results.neg50)]];
   this.showWinnerTitle = true;
   if(this.chart == null) {
   this.createChart();
   this.updateChart();
-} else this.newData = [[1,0],[2,this.results[3]],[3,this.results[6]], [4,100]];
+} else this.newData = [["Overall",Number(this.results.tot50)],["Positive",Number(this.results.pos50)],
+["Negative",Number(this.results.neg50)]];
 this.updateChart();
 }
 
-graphNegative() {
-  this.newData = [[1,100],[2,this.results[4]],[3,this.results[7]], [4,0]];
+graphLastOneHundred() {
+  this.newData = [["Overall",Number(this.results.tot100)],["Positive",Number(this.results.pos100)],
+  ["Negative",Number(this.results.neg100)]];
   this.showWinnerTitle = true;
   if(this.chart == null) {
   this.createChart();
   this.updateChart();
-} else this.newData = [[1,100],[2,this.results[4]],[3,this.results[7]], [4,0]];
+} else this.newData = [["Overall",Number(this.results.tot100)],["Positive",Number(this.results.pos100)],
+["Negative",Number(this.results.neg100)]];
+this.updateChart();
+}
+
+graphLastTwoHundred() {
+  this.newData = [["Overall",Number(this.results.tot200)],["Positive",Number(this.results.pos200)],
+  ["Negative",Number(this.results.neg200)]];
+  this.showWinnerTitle = true;
+  if(this.chart == null) {
+  this.createChart();
+  this.updateChart();
+} else this.newData = [["Overall",Number(this.results.tot200)],["Positive",Number(this.results.pos200)],
+["Negative",Number(this.results.neg200)]];
 this.updateChart();
 }
 
 callExpertService(){
-    this.tweetService.getExpertResult(this.twitterHandle).subscribe(response => {
-      this.results = response.json();
 
-      if(this.selectedGraph == "total"){
-      this.graphTotal();
-    } else if(this.selectedGraph == "positive"){
-      this.graphPositive();
-    } else if(this.selectedGraph == "negative"){
-      this.graphNegative();
-    }
+  let loader = this.loadingCtrl.create({
+      content: 'Getting latest entries...',
     });
+
+    loader.present().then(() => {
+         this.tweetService.getExpertResult(this.twitterHandle).subscribe(response => {
+       this.results = response.json();
+
+      loader.dismiss();
+      console.log(this.results.mostRecentTweet);
+      this.mostRecentTweet = this.results.mostRecentTweet.unmodifiedText;
+      if(this.selectedGraph == "lastTwentyFive"){
+      this.graphLastTwentyFive();
+    } else if(this.selectedGraph == "lastFifty"){
+      this.graphLastFifty();
+    } else if(this.selectedGraph == "lastOneHundred"){
+      this.graphLastOneHundred();
+    } else if(this.selectedGraph == "lastTwoHundred"){
+      this.graphLastTwoHundred();
+    }
+  });
+  });
   }
+
+
+
+
+
+
+
+
   ngOnInit() {
     this.createChart();
+
   }
+
+
+  // ionViewLoaded() {
+  //   let loader = this.loadingCtrl.create({
+  //     content: 'Getting latest entries...',
+  //   });
+  //
+  //   loader.present().then(() => {
+  //     this.someService.getLatestEntries()
+  //       .subscribe(res => {
+  //         this.latestEntries = res;
+  //       });
+  //     loader.dismiss();
+  //   });
+  // }
+
+
+
+
+
+
 
   ngOnChanges() {
     if (this.chart) {

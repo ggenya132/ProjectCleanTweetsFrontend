@@ -24498,6 +24498,10 @@ ion-navbar.toolbar {
   }
 }
 
+page-battle .battleTitle {
+  text-align: center;
+}
+
 page-battle body.modal-open {
   position: fixed;
   overflow: hidden;
@@ -24536,7 +24540,7 @@ page-battle .axislabel {
 
 page-battle .d3-chart {
   margin: 10px auto 10px auto;
-  margin-left: 5px;
+  margin-left: 10px;
   margin-bottom: 0px;
   margin-top: -30px;
   height: 25%;
@@ -24584,13 +24588,13 @@ page-battle .birdy2 {
   width: 30%;
 }
 
+page-expert .expertTitle {
+  text-align: center;
+}
+
 page-expert body.modal-open {
   position: fixed;
   overflow: hidden;
-}
-
-page-expert .karma {
-  height: 50px;
 }
 
 page-expert .graphDisplay {
@@ -24626,7 +24630,7 @@ page-expert .axislabel {
 
 page-expert .d3-chart {
   margin: 10px auto 10px auto;
-  margin-left: 5px;
+  margin-left: 10px;
   margin-bottom: 0px;
   margin-top: -30px;
   height: 25%;
@@ -24647,6 +24651,10 @@ page-expert ion-card {
   position: relative;
 }
 
+page-expert .karma {
+  height: 11%;
+}
+
 page-expert .bottomCard {
   height: 30px;
 }
@@ -24665,4 +24673,12 @@ page-expert .birdy3 {
   bottom: 10px;
   margin-right: 10px;
   width: 30%;
+}
+
+page-home .homeTitle {
+  text-align: center;
+}
+
+page-home .homeButtons {
+  margin: auto;
 }

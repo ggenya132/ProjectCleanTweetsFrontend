@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Battle Mode
+    <ion-title class="expertTitle">
+      Expert Mode
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -18,30 +18,29 @@
   <button ion-button full (click)="callExpertService()">Check Twitter Karma</button>
   <!-- <ion-title *ngIf="chart">{{results[0]}}</ion-title> -->
   <ion-card class="karma">
-  <p class="waitingForWinner" *ngIf="!showWinnerTitle"> *** WAITING FOR KARMA TALLEY *** </p>
-  <p class="total" *ngIf="showWinnerTitle"> Total score goes here</p>
-  <p class="positive" *ngIf="showWinnerTitle"> positive score goes here </p>
-  <p class="negative"*ngIf="showWinnerTitle"> negative score goes here </p>
+  <p class="waitingForWinner" *ngIf="!showWinnerTitle"> *** MOST RECENT TWEET *** </p>
+  <p class="total" *ngIf="showWinnerTitle"> {{mostRecentTweet}}</p>
 </ion-card>
 
 <ion-list>
   <ion-item>
-    <ion-label class="graphDisplay">Graph Display</ion-label>
+    <ion-label class="graphDisplay">Tweets Analyzed</ion-label>
     <ion-select [(ngModel)]="selectedGraph" (ionChange)="onInput()">
-      <ion-option value="total" *ngIf="totalSelected">Total</ion-option>
-      <ion-option value="positive" *ngIf="positiveSelected">Positive</ion-option>
-      <ion-option value="negative" **ngIf="negativeSelected">Negative</ion-option>
+      <ion-option value="lastTwentyFive" >Last 25</ion-option>
+      <ion-option value="lastFifty" >Last 50</ion-option>
+      <ion-option value="lastOneHundred" >Last 100</ion-option>
+      <ion-option value="lastTwoHundred" >Last 200</ion-option>
     </ion-select>
   </ion-item>
 </ion-list>
 
 
   <div class="d3-chart" #chart></div>
-  <p class="bottomCard">
+  <!-- <p class="bottomCard">
     <ion-row *ngIf="showWinnerTitle">
     <ion-col class="axislabel">Total</ion-col>
     <ion-col class="axislabel">Positive</ion-col>
     <ion-col class="axislabel">Negative</ion-col>
   </ion-row>
-</p>
+</p> -->
 </ion-content>
