@@ -5,8 +5,8 @@ import { Http, URLSearchParams } from '@angular/http';
 export class TweetService{
 
     params: URLSearchParams
-    // public tweetUrl:string = "http://localhost:8080/svc/v1/tweets";
-    public tweetUrl:string = "https://project-clean-tweets.herokuapp.com/svc/v1/tweets";
+    public tweetUrl:string = "http://localhost:8080/svc/v1/tweets";
+    // public tweetUrl:string = " https://project-clean-tweets.herokuapp.com/svc/v1/tweets";
 
 
     constructor(public http:Http){
@@ -27,6 +27,10 @@ export class TweetService{
 
     getBattleResult(awayTwitterHandle, homeTwitterHandle){
         return this.http.get(this.tweetUrl+"/"+awayTwitterHandle+"/"+homeTwitterHandle+"/100/score");
+    }
+
+    getExpertResult(twitterHandle) {
+      return this.http.get(this.tweetUrl+"/"+twitterHandle+"/score/detail");
     }
 
 }

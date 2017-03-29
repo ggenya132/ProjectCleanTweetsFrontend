@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
+    <ion-title class="battleTitle">
       Battle Mode
     </ion-title>
   </ion-navbar>
@@ -8,9 +8,9 @@
 
 <ion-content>
   <ion-card>
-    <img class="penguin" src="../assets/icon/judgepenguin.png"/>
-    <img class="birdy1" src="../assets/icon/search.jpg"/>
-    <img class="birdy2" src="../assets/icon/search.jpg"/>
+    <img class="penguin" src="assets/icon/judgepenguin.png"/>
+    <img class="birdy1" src="assets/icon/search.jpg"/>
+    <img class="birdy2" src="assets/icon/search.jpg"/>
   </ion-card>
 
 	<ion-searchbar [(ngModel)]="awayTwitterHandle" placeholder="       *** enter twitter handle ***">
@@ -39,6 +39,8 @@
 
 
   <div class="d3-chart" #chart></div>
+
+
   <p class="bottomCard">
     <ion-row *ngIf="showWinnerTitle">
     <ion-col class="axislabel">@meanMachine </ion-col>
