@@ -100,7 +100,9 @@ this.updateChart();
 }
 
 callKarmaService(){
-
+  if (this.awayTwitterHandle === this.homeTwitterHandle){
+    console.log("this is hacky.");
+  } else {
   let loader = this.loadingCtrl.create({
       content: 'Getting latest entries...',
     });
@@ -121,6 +123,7 @@ callKarmaService(){
     });
   });
   }
+}
 
 
   ngOnInit() {
