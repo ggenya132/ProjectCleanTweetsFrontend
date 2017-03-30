@@ -24570,10 +24570,10 @@ page-battle .bottomCard {
 }
 
 page-battle .penguin {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
+  position: absolute;
+  margin-left: 20%;
   width: 60%;
+  bottom: 10px;
 }
 
 page-battle .birdy1 {
@@ -24664,9 +24664,10 @@ page-expert .bottomCard {
 }
 
 page-expert .penguin {
-  position: relative;
+  position: absolute;
+  z-index: 1;
   margin-left: 65px;
-  margin-right: auto;
+  bottom: 10px;
   width: 60%;
 }
 
@@ -24700,7 +24701,8 @@ page-home .expert {
 }
 
 page-home .penguin {
-  position: absolute;
-  height: 300px;
-  top: 50px;
+  position: relative;
+  height: 80%;
+  width: 100%;
+  bottom: 50px;
 }

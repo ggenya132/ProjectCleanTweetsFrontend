@@ -64,10 +64,10 @@ ion-card {
   height: 30px;
 }
 .penguin {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
+  position: absolute;
+  margin-left: 20%;
   width: 60%;
+  bottom: 10px;
 }
 .birdy1 {
   transform: rotateY(180deg);
