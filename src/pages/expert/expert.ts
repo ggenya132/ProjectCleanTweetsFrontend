@@ -126,6 +126,9 @@ callExpertService(){
     } else if(this.selectedGraph == "lastTwoHundred"){
       this.graphLastTwoHundred();
     }
+  }, err => {
+      console.log("No such twitter handle");
+      loader.dismiss();
   });
   });
   }
