@@ -1,0 +1,83 @@
+page-expert {
+
+  .expertTitle {
+    text-align: right;
+  }
+
+  body.modal-open {
+    position: fixed;
+    overflow: hidden;
+  }
+
+  .graphDisplay {
+    size: 30%;
+  }
+
+  .waitingForWinner {
+    color: #aaaaaa;
+    text-align: center;
+  }
+  .winner {
+    border-top: 4px;
+    font-size:15px;
+    color: black;
+    text-align: center;
+  }
+  .loser {
+    font-size: 15px;
+    color: red;
+    text-align: center;
+  }
+  .outcome {
+    height:30px;
+  }
+  .axislabel {
+    margin-left: 10px;
+    font-size: 8px;
+  }
+
+.d3-chart {
+  margin: 10px auto 10px auto;
+  margin-left: 10px;
+  margin-bottom: 0px;
+  margin-top: -30px;
+  height: 25%;
+}
+
+.d3-chart .axis path,
+.d3-chart .axis line {
+  stroke: #999;
+}
+
+.d3-chart .axis text {
+  position: relative;
+  fill: #999;
+}
+ion-card {
+  height: 22%;
+  position: relative;
+}
+
+.karma {
+  height: 11%;
+}
+
+.bottomCard {
+  height: 30px;
+}
+.penguin {
+  position: relative;
+  margin-left: 65px;
+  margin-right: auto;
+  width: 60%;
+}
+.birdy3 {
+  position: absolute;
+  z-index: 1;
+  margin-left: 45px;
+  bottom: 10px;
+  margin-right: 10px;
+  width: 30%;
+}
+
+}

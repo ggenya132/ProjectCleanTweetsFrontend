@@ -1,23 +1,24 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Project Clean Tweets
+    <ion-title class="homeTitle">
+      Welcome To Project Clean Tweets
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-	<ion-searchbar [(ngModel)]="twitterHandle"
-		(cancel)="userPressedCancel()"
-		(keyup)="keyHasBeenPressed($event)">
-  </ion-searchbar>
+<ion-content class="select">
+  
+    <img class="penguin" src="assets/icon/directorPenguin.png"/>
 
-  <button ion-button (click)="callService()">Call Service</button>
-  <ion-title *ngIf="score">{{score}}</ion-title>
-  <ion-list *ngFor="let tweet of tweets">
-    <ion-card>
-      <ion-card-content>{{tweet.retweetCount}}</ion-card-content>
-      <ion-card-content>{{tweet.unmodifiedText}}</ion-card-content>
-    </ion-card>
-  </ion-list>
+
+
+  <ion-footer class="expert">
+  <button ion-button full (click)="goToExpert()">Expert Mode</button>
+</ion-footer>
+  <ion-footer class="battle">
+  <button ion-button full (click)="goToBattle()">Battle Mode</button>
+</ion-footer>
+<ion-footer class="about">
+  <button ion-button full (click)="goToAbout()">About</button>
+</ion-footer>
 </ion-content>
