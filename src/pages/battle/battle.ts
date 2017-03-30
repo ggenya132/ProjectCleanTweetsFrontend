@@ -101,7 +101,7 @@ this.updateChart();
 
 callKarmaService(){
   if (this.awayTwitterHandle === this.homeTwitterHandle){
-    console.log("this is hacky.");
+    console.log("Please provide a different twitter handle.");
   } else {
   let loader = this.loadingCtrl.create({
       content: 'Getting latest entries...',
@@ -120,6 +120,9 @@ callKarmaService(){
     } else if(this.selectedGraph == "negative"){
       this.graphNegative();
     }
+    }, err => {
+      console.log("No such twitter handle");
+      loader.dismiss();
     });
   });
   }
